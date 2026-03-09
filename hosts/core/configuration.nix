@@ -19,16 +19,14 @@
   boot.kernelModules = [ "tun" ];
   security.sudo.wheelNeedsPassword = false;
 
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+
   networking = {
     hostName = "core";
     networkmanager.enable = true;
-    firewall = {
-      checkReversePath = false;
-      allowedTCPPorts = [
-        80
-        443
-      ];
-    };
   };
 
   # Set your time zone.
@@ -57,7 +55,6 @@
       "networkmanager"
       "wheel"
       "kvm"
-      "adbusers"
     ];
   };
 

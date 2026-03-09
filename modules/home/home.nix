@@ -14,23 +14,25 @@
     with pkgs;
     [
       nixfmt
+      nil
+
+      obsidian
+      vscode
+      mpv
+      logisim-evolution
+      zathura
+      xray
+      lf
+
       hyprpolkitagent
       wl-clipboard
-      obsidian
       wl-screenrec
-      mpv
       grim
       slurp
-      logisim-evolution
       firefox
       kitty
       noto-fonts
-      vscode
       fuzzel
-      zathura
-      nil
-      xray
-      android-studio
     ]
     ++ (with pkgs-stable; [ rnote ]);
 

@@ -16,4 +16,13 @@
       "localhost"
     ];
   };
+  networking = {
+    firewall = {
+      checkReversePath = false;
+      allowedTCPPorts = [
+        80
+        443
+      ];
+    };
+  };
 }
