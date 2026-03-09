@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  ...
 }:
 {
   environment.etc."nextcloud-admin-pass".text = "123456";

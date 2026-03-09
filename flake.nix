@@ -9,16 +9,14 @@
   };
 
   outputs =
-    inputs@{
+    {
       self,
       nixpkgs,
       nixpkgs-stable,
       home-manager,
       ...
-    }:
+    }@inputs:
     {
-      # Used with `nixos-rebuild --flake .#<hostname>`
-      # nixosConfigurations."<hostname>".config.system.build.toplevel must be a derivation
       nixosConfigurations.core = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [

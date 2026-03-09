@@ -5,10 +5,14 @@
 }:
 
 {
-  imports = [
-    ./hardware-configuration.nix
-    ../../modules/nix/nextcloud.nix
-  ];
+  imports =
+    let
+      mod_dir = ../../modules/nixos;
+    in
+    [
+      ./hardware-configuration.nix
+      (mod_dir + "/nextcloud.nix")
+    ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
