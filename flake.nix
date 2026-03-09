@@ -25,7 +25,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.hollow = ./home.nix;
+            home-manager.users.hollow = ./modules/home/home.nix;
             home-manager.extraSpecialArgs = {
               pkgs-stable = import nixpkgs-stable {
                 system = "x86_64-linux";
