@@ -82,11 +82,6 @@
     ];
   };
 
-  #android setup
-
-  nixpkgs.config.android_sdk.accept_license = true;
-  programs.adb.enable = true;
-
   environment.systemPackages = with pkgs; [
     neovim
     git
