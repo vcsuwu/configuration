@@ -10,6 +10,7 @@
 
   outputs =
     inputs@{
+      self,
       nixpkgs,
       nixpkgs-stable,
       home-manager,

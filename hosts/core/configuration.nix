@@ -1,6 +1,5 @@
 {
   config,
-  lib,
   pkgs,
   ...
 }:
@@ -8,13 +7,14 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ../../modules/nix/nextcloud.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelModules = [ "tun" ];
   security.sudo.wheelNeedsPassword = false;
 
-  boot.kernelModules = [ "tun" ];
   networking = {
     hostName = "core";
     networkmanager.enable = true;
@@ -67,19 +67,6 @@
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
-  };
-
-  environment.etc."nextcloud-admin-pass".text = "123456";
-  services.nextcloud = {
-    enable = true;
-    package = pkgs.nextcloud33;
-    hostName = "localhost";
-    config.adminpassFile = "/etc/nextcloud-admin-pass";
-    config.dbtype = "sqlite";
-    settings.trusted_domains = [
-      "192.168.0.12"
-      "localhost"
-    ];
   };
 
   environment.systemPackages = with pkgs; [
