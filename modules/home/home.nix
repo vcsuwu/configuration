@@ -2,10 +2,14 @@
   config,
   pkgs,
   pkgs-stable,
+  zen,
   ...
 }:
 
 {
+  imports = [
+    ./apps.nix
+  ];
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "hollow";
@@ -23,18 +27,19 @@
       zathura
       xray
       lf
+      kitty
+      fuzzel
+      qbittorrent
 
       hyprpolkitagent
       wl-clipboard
       wl-screenrec
       grim
       slurp
-      firefox
-      kitty
       noto-fonts
-      fuzzel
     ]
-    ++ (with pkgs-stable; [ rnote ]);
+    ++ (with pkgs-stable; [ rnote ])
+    ++ [ zen.packages."x86_64-linux".default ];
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
@@ -49,17 +54,6 @@
   gtk = {
     enable = true;
     colorScheme = "dark";
-  };
-
-  programs = {
-    git = {
-      enable = true;
-      settings = {
-        user.name = "hollow";
-        user.email = "placeholder";
-        init.defaultBranch = "main";
-      };
-    };
   };
 
   # Let Home Manager install and manage itself.

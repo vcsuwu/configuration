@@ -18,6 +18,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelModules = [ "tun" ];
   security.sudo.wheelNeedsPassword = false;
+  programs.nix-ld.enable = true;
 
   hardware.graphics = {
     enable = true;

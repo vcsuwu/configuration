@@ -6,6 +6,10 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs/9da7f1cf7f8a6e2a7cb3001b048546c92a8258b4";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    zen-browser = {
+      url = "github:youwen5/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -31,6 +35,7 @@
                 system = "x86_64-linux";
                 config.allowUnfree = true;
               };
+              zen = inputs.zen-browser;
             };
           }
         ];
