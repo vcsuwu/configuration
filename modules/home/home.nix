@@ -3,13 +3,54 @@
   pkgs,
   pkgs-stable,
   zen,
+  nixvim,
   ...
 }:
 
 {
   imports = [
     ./apps.nix
+    nixvim
   ];
+
+  programs.nixvim = {
+    enable = true;
+    colorschemes.gruvbox.enable = true;
+    plugins = {
+      lspconfig.enable = true;
+      telescope.enable = true;
+      web-devicons.enable = true;
+      treesitter = {
+    	enable = true;
+    	highlight.enable = true;
+  	};
+    };
+    globals.mapleader = " ";
+    opts = {
+      rnu = true;
+      nu = true;
+    };
+    lsp.servers = {
+      pyright = {
+        enable = true;
+	package = pkgs.pyright;
+      };
+      nil_ls = {
+        enable = true;
+	package = pkgs.nil;
+      };
+
+    };
+    keymaps = [
+      {key = "<leader>f";
+      mode = "n";
+      action = ":Telescope find_files<CR>";}
+    ];
+  };
+
+
+
+
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "hollow";
@@ -19,6 +60,8 @@
     [
       nixfmt
       nil
+      qtox
+      keepassxc
 
       obsidian
       vscode

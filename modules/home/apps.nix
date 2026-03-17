@@ -15,7 +15,7 @@
     bash.enable = true;
     bash.bashrcExtra = ''
       alias nu="sudo nixos-rebuild switch --flake /home/hollow/for-sort/nix#core"
-      alias nue="sudo nvim /etc/nixos/"
+      alias nue="nvim /home/hollow/for-sort/nix/"
       export PS1="\u@\h:\w\$ "
     '';
   };

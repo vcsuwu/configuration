@@ -10,6 +10,9 @@
       url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixvim = {
+      url = "github:nix-community/nixvim";
+    };
   };
 
   outputs =
@@ -18,6 +21,7 @@
       nixpkgs,
       nixpkgs-stable,
       home-manager,
+      nixvim,
       ...
     }@inputs:
     {
@@ -36,6 +40,7 @@
                 config.allowUnfree = true;
               };
               zen = inputs.zen-browser;
+	      nixvim = nixvim.homeModules.nixvim;
             };
           }
         ];
