@@ -10,46 +10,58 @@
 {
   imports = [
     ./apps.nix
+    ./desktop.nix
     nixvim
   ];
 
   programs.nixvim = {
     enable = true;
-    colorschemes.gruvbox.enable = true;
+    colorschemes.rose-pine = {
+      enable = true;
+      settings = {
+        styles = {
+          bold = false;
+          italic = false;
+          transparency = true;
+        };
+      };
+    };
     plugins = {
       lspconfig.enable = true;
       telescope.enable = true;
       web-devicons.enable = true;
       treesitter = {
-    	enable = true;
-    	highlight.enable = true;
-  	};
+        enable = true;
+        highlight.enable = true;
+      };
     };
     globals.mapleader = " ";
     opts = {
       rnu = true;
       nu = true;
+      so = 10;
+      shiftwidth = 4;
+      tabstop = 4;
     };
     lsp.servers = {
       pyright = {
         enable = true;
-	package = pkgs.pyright;
+        package = pkgs.pyright;
       };
       nil_ls = {
         enable = true;
-	package = pkgs.nil;
+        package = pkgs.nil;
       };
 
     };
     keymaps = [
-      {key = "<leader>f";
-      mode = "n";
-      action = ":Telescope find_files<CR>";}
+      {
+        key = "<leader>f";
+        mode = "n";
+        action = ":Telescope find_files<CR>";
+      }
     ];
   };
-
-
-
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -58,11 +70,14 @@
   home.packages =
     with pkgs;
     [
+      nerd-fonts.iosevka-term
       nixfmt
+      qbittorrent
       nil
       qtox
       keepassxc
 
+      ncmpcpp
       obsidian
       vscode
       mpv
@@ -75,6 +90,7 @@
       qbittorrent
 
       hyprpolkitagent
+      hyprpaper
       wl-clipboard
       wl-screenrec
       grim
@@ -93,11 +109,6 @@
   # the Home Manager release notes for a list of state version
   # changes in each release.
   home.stateVersion = "25.11";
-
-  gtk = {
-    enable = true;
-    colorScheme = "dark";
-  };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
