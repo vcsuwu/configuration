@@ -14,8 +14,8 @@
     direnv.nix-direnv.enable = true;
     bash.enable = true;
     bash.bashrcExtra = ''
-      alias nu="sudo nixos-rebuild switch --flake /home/hollow/for-sort/nix#core"
-      alias nue="nvim /home/hollow/for-sort/nix/"
+      alias nu="sudo nixos-rebuild switch --flake /home/hollow/personal/projects/nix#core"
+      alias nue="nvim /home/hollow/personal/projects/nix/"
       export PS1="\u@\h:\w\$ "
     '';
   };

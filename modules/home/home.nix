@@ -3,7 +3,6 @@
   pkgs,
   pkgs-stable,
   zen,
-  nixvim,
   ...
 }:
 
@@ -11,62 +10,12 @@
   imports = [
     ./apps.nix
     ./desktop.nix
-    nixvim
   ];
 
-  programs.nixvim = {
-    enable = true;
-    colorschemes.rose-pine = {
-      enable = true;
-      settings = {
-        styles = {
-          bold = false;
-          italic = false;
-          transparency = true;
-        };
-      };
-    };
-    plugins = {
-      lspconfig.enable = true;
-      telescope.enable = true;
-      web-devicons.enable = true;
-      treesitter = {
-        enable = true;
-        highlight.enable = true;
-      };
-    };
-    globals.mapleader = " ";
-    opts = {
-      rnu = true;
-      nu = true;
-      so = 10;
-      shiftwidth = 4;
-      tabstop = 4;
-    };
-    lsp.servers = {
-      pyright = {
-        enable = true;
-        package = pkgs.pyright;
-      };
-      nil_ls = {
-        enable = true;
-        package = pkgs.nil;
-      };
+  home.file.".config/kitty/kitty.conf".source = config.lib.file.mkOutOfStoreSymlink (
+    config.home.homeDirectory + "/.files/kitty.conf"
+  );
 
-    };
-    keymaps = [
-      {
-        key = "<leader>f";
-        mode = "n";
-        action = ":Telescope find_files<CR>";
-      }
-    ];
-  };
-
-  # Home Manager needs a bit of information about you and the
-  # paths it should manage.
-  home.username = "hollow";
-  home.homeDirectory = "/home/hollow";
   home.packages =
     with pkgs;
     [
@@ -76,6 +25,9 @@
       nil
       qtox
       keepassxc
+
+      neovim-unwrapped
+      tmux
 
       ncmpcpp
       obsidian
@@ -88,6 +40,7 @@
       kitty
       fuzzel
       qbittorrent
+      kdePackages.dolphin
 
       hyprpolkitagent
       hyprpaper
@@ -99,6 +52,9 @@
     ]
     ++ (with pkgs-stable; [ rnote ])
     ++ [ zen.packages."x86_64-linux".default ];
+
+  home.username = "hollow";
+  home.homeDirectory = "/home/hollow";
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
