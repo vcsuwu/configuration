@@ -66,11 +66,28 @@
     enable = true;
     settings = {
       vim = {
+         theme = {
+           enable = true;
+           name = "rose-pine";
+           style = "main";
+         };
+         lsp.enable = true;
+         telescope.enable = true;
+         autocomplete.nvim-cmp.enable = true;
+         statusline.lualine.enable = true;
          vimAlias = true;
          viAlias = true;
          autopairs.nvim-autopairs.enable = true;
-         languages.nix.enable = true;
-         extraPackages = with pkgs; [ripgrep];
+         languages = {
+           enableTreesitter = true;
+           enableDAP = true;
+           enableExtraDiagnostics = true;
+           nix.enable = true;
+           html.enable = true;
+           css.enable =true;
+           ts.enable = true;
+         };
+         extraPackages = with pkgs; [ripgrep nil];
          visuals.indent-blankline.enable = true;
       };
     };
