@@ -12,6 +12,7 @@
     ./apps.nix
     ./desktop.nix
     nvf.homeManagerModules.default
+    ./nvf.nix
   ];
 
   home.file.".config/kitty/kitty.conf".source = config.lib.file.mkOutOfStoreSymlink (
@@ -22,33 +23,21 @@
     with pkgs;
     [
       nerd-fonts.iosevka-term
-      nixfmt
       qbittorrent
       qtox
       keepassxc
-
-      #neovim setupik
-     # vimPlugins.nvim-treesitter.withAllGrammars
-     # lua-language-server
-     # nixd
-     # neovim-unwrapped
-     # ripgrep
-     # luajitPackages.luarocks
-     # lua5_1
       tmux
 
       ncmpcpp
       gimp
       obsidian
-      vscode
       mpv
       logisim-evolution
       zathura
       xray
-      lf
+      yazi
       kitty
       fuzzel
-      qbittorrent
       kdePackages.dolphin
 
       hyprpolkitagent
@@ -61,37 +50,6 @@
     ]
     ++ (with pkgs-stable; [ rnote ])
     ++ [ zen.packages."x86_64-linux".default ];
-
-  programs.nvf = {
-    enable = true;
-    settings = {
-      vim = {
-         theme = {
-           enable = true;
-           name = "rose-pine";
-           style = "main";
-         };
-         lsp.enable = true;
-         telescope.enable = true;
-         autocomplete.nvim-cmp.enable = true;
-         statusline.lualine.enable = true;
-         vimAlias = true;
-         viAlias = true;
-         autopairs.nvim-autopairs.enable = true;
-         languages = {
-           enableTreesitter = true;
-           enableDAP = true;
-           enableExtraDiagnostics = true;
-           nix.enable = true;
-           html.enable = true;
-           css.enable =true;
-           ts.enable = true;
-         };
-         extraPackages = with pkgs; [ripgrep nil];
-         visuals.indent-blankline.enable = true;
-      };
-    };
-  };
 
   home.username = "hollow";
   home.homeDirectory = "/home/hollow";
