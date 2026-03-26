@@ -3,6 +3,7 @@
   pkgs,
   pkgs-stable,
   zen,
+  nvf,
   ...
 }:
 
@@ -10,6 +11,7 @@
   imports = [
     ./apps.nix
     ./desktop.nix
+    nvf.homeManagerModules.default
   ];
 
   home.file.".config/kitty/kitty.conf".source = config.lib.file.mkOutOfStoreSymlink (
@@ -22,14 +24,21 @@
       nerd-fonts.iosevka-term
       nixfmt
       qbittorrent
-      nil
       qtox
       keepassxc
 
-      neovim-unwrapped
+      #neovim setupik
+     # vimPlugins.nvim-treesitter.withAllGrammars
+     # lua-language-server
+     # nixd
+     # neovim-unwrapped
+     # ripgrep
+     # luajitPackages.luarocks
+     # lua5_1
       tmux
 
       ncmpcpp
+      gimp
       obsidian
       vscode
       mpv
@@ -52,6 +61,20 @@
     ]
     ++ (with pkgs-stable; [ rnote ])
     ++ [ zen.packages."x86_64-linux".default ];
+
+  programs.nvf = {
+    enable = true;
+    settings = {
+      vim = {
+         vimAlias = true;
+         viAlias = true;
+         autopairs.nvim-autopairs.enable = true;
+         languages.nix.enable = true;
+         extraPackages = with pkgs; [ripgrep];
+         visuals.indent-blankline.enable = true;
+      };
+    };
+  };
 
   home.username = "hollow";
   home.homeDirectory = "/home/hollow";

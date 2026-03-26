@@ -12,6 +12,7 @@
     [
       ./hardware-configuration.nix
       (mod_dir + "/nextcloud.nix")
+      (mod_dir + "/zapret.nix")
     ];
 
   boot.loader.systemd-boot.enable = true;
