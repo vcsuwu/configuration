@@ -10,8 +10,8 @@
       vim = {
         theme = {
           enable = true;
-          name = "rose-pine";
-          style = "main";
+          name = "gruvbox";
+          style = "dark";
           transparent = true;
         };
         options = {
@@ -34,6 +34,7 @@
           enableDAP = true;
           enableExtraDiagnostics = true;
           nix.enable = true;
+          python.enable = true;
           html.enable = true;
           html.lsp.servers = [
             "superhtml"
@@ -41,6 +42,8 @@
           ];
           css.enable = true;
           ts.enable = true;
+          clang.enable = true;
+          rust.enable = true;
         };
         extraPackages = with pkgs; [
           ripgrep

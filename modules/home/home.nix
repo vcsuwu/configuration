@@ -1,41 +1,39 @@
 {
-  config,
   pkgs,
   pkgs-stable,
-  zen,
-  nvf,
   ...
-}:
-
-{
+}: {
   imports = [
     ./apps.nix
     ./desktop.nix
-    nvf.homeManagerModules.default
-    ./nvf.nix
   ];
 
-  home.file.".config/kitty/kitty.conf".source = config.lib.file.mkOutOfStoreSymlink (
-    config.home.homeDirectory + "/.files/kitty.conf"
-  );
-
-  home.packages =
-    with pkgs;
+  home.packages = with pkgs;
     [
-      nerd-fonts.iosevka-term
-      qbittorrent
-      qtox
-      keepassxc
       tmux
-
       ncmpcpp
-      gimp
-      obsidian
-      mpv
-      logisim-evolution
-      zathura
       xray
       yazi
+      zathura
+
+      neovim-unwrapped
+      python3
+      luajitPackages.luarocks
+      lua5_1
+      ripgrep
+      fd
+      nixd
+      alejandra
+
+      firefox
+      qtox
+      keepassxc
+      qbittorrent
+      gimp
+      obsidian
+      krita
+      logisim-evolution
+      mpv
       kitty
       fuzzel
       kdePackages.dolphin
@@ -47,23 +45,12 @@
       grim
       slurp
       noto-fonts
+      nerd-fonts.iosevka-term
     ]
-    ++ (with pkgs-stable; [ rnote ])
-    ++ [ zen.packages."x86_64-linux".default ];
+    ++ (with pkgs-stable; [rnote]);
 
   home.username = "hollow";
   home.homeDirectory = "/home/hollow";
-
-  # This value determines the Home Manager release that your
-  # configuration is compatible with. This helps avoid breakage
-  # when a new Home Manager release introduces backwards
-  # incompatible changes.
-  #
-  # You can update Home Manager without changing this value. See
-  # the Home Manager release notes for a list of state version
-  # changes in each release.
   home.stateVersion = "25.11";
-
-  # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
