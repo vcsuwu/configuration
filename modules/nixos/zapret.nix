@@ -3,8 +3,7 @@
   pkgs,
   lib,
   ...
-}:
-{
+}: {
   services.zapret = {
     enable = false;
     whitelist = lib.strings.splitString "\n" (builtins.readFile ../../assets/whitelist.txt);

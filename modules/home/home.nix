@@ -8,6 +8,30 @@
     ./desktop.nix
   ];
 
+  programs.neovim = {
+    enable = true;
+    extraPackages = with pkgs; [
+      ripgrep
+      fd
+      nixd
+      alejandra
+      lua-language-server
+    ];
+    extraLuaPackages = lp: with lp; [luarocks];
+    withPython3 = true;
+    plugins = with pkgs.vimPlugins; [
+      nvim-treesitter.withAllGrammars
+      telescope-nvim
+      plenary-nvim
+      telescope-fzy-native-nvim
+      nvim-lspconfig
+      rose-pine
+    ];
+    initLua = ''
+      require("hollow")
+    '';
+  };
+
   home.packages = with pkgs;
     [
       tmux
@@ -15,15 +39,6 @@
       xray
       yazi
       zathura
-
-      neovim-unwrapped
-      python3
-      luajitPackages.luarocks
-      lua5_1
-      ripgrep
-      fd
-      nixd
-      alejandra
 
       firefox
       qtox
