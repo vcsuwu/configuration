@@ -16,8 +16,11 @@
       nixd
       alejandra
       lua-language-server
+      typescript-language-server
+      vscode-langservers-extracted
+      emmet-ls
     ];
-    extraLuaPackages = lp: with lp; [luarocks];
+    extraLuaPackages = lp: with lp; [luarocks jsregexp];
     withPython3 = true;
     plugins = with pkgs.vimPlugins; [
       nvim-treesitter.withAllGrammars
@@ -26,6 +29,11 @@
       telescope-fzy-native-nvim
       nvim-lspconfig
       rose-pine
+      nvim-web-devicons
+      dashboard-nvim
+      blink-cmp
+      friendly-snippets
+      luasnip
     ];
     initLua = ''
       require("hollow")
