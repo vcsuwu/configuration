@@ -2,33 +2,45 @@
   config,
   pkgs,
   ...
-}:
-
-{
-  imports =
-    let
-      mod_dir = ../../modules/nixos;
-    in
-    [
-      ./hardware-configuration.nix
-      (mod_dir + "/nextcloud.nix")
-      (mod_dir + "/zapret.nix")
-    ];
+}: {
+  imports = let
+    mod_dir = ../../modules/nixos;
+  in [
+    ./hardware-configuration.nix
+    (mod_dir + "/nextcloud.nix")
+    (mod_dir + "/zapret.nix")
+  ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelModules = [ "tun" ];
+  boot.kernelModules = ["tun"];
   security.sudo.wheelNeedsPassword = false;
   programs.nix-ld.enable = true;
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+  };
 
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
   };
 
+  programs.wireshark.enable = true;
+  programs.wireshark.dumpcap.enable = true;
+  programs.wireshark.package = pkgs.wireshark;
+  programs.gamemode.enable = true;
+
   networking = {
+    firewall = {
+      enable = true;
+    };
+    nftables.enable = true;
     hostName = "core";
     networkmanager.enable = true;
+    nameservers = ["1.1.1.1" "8.8.8.8"];
   };
 
   # Set your time zone.
@@ -57,6 +69,7 @@
       "networkmanager"
       "wheel"
       "kvm"
+      "wireshark"
     ];
   };
 
@@ -72,6 +85,12 @@
     xwayland.enable = true;
   };
 
+  programs.throne = {
+    enable = true;
+    tunMode.enable = true;
+    tunMode.setuid = true;
+  };
+
   environment.systemPackages = with pkgs; [
     neovim
     git
@@ -84,5 +103,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.11"; # Did you read the comment?
-
 }

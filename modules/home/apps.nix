@@ -16,7 +16,15 @@
       alias nu="sudo nixos-rebuild switch --flake /home/hollow/personal/projects/nix#core"
       alias nue="nvim /home/hollow/personal/projects/nix/"
       alias tmux="tmux -f /home/hollow/.config/tmux.conf"
-      export PS1="\u@\h:\w\$ "
+      export PS1="\w\$ "
+      function y() {
+       local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+       command yazi "$@" --cwd-file="$tmp"
+       IFS= read -r -d ''' cwd < "$tmp"
+       [ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
+       rm -f -- "$tmp"
+      }
+      alias n="nvim"
     '';
   };
 }

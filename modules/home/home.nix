@@ -9,6 +9,7 @@
   ];
 
   programs.neovim = {
+    defaultEditor = true;
     enable = true;
     extraPackages = with pkgs; [
       ripgrep
@@ -19,6 +20,8 @@
       typescript-language-server
       vscode-langservers-extracted
       emmet-ls
+      gopls
+      rust-analyzer
     ];
     extraLuaPackages = lp: with lp; [luarocks jsregexp];
     withPython3 = true;
@@ -30,10 +33,10 @@
       nvim-lspconfig
       rose-pine
       nvim-web-devicons
-      dashboard-nvim
       blink-cmp
       friendly-snippets
       luasnip
+      nvim-autopairs
     ];
     initLua = ''
       require("hollow")
@@ -46,20 +49,26 @@
       ncmpcpp
       xray
       yazi
+      discord
       zathura
 
+      blender
+      inkscape
+      godot
+      telegram-desktop
+      flatpak
       firefox
       qtox
       keepassxc
       qbittorrent
       gimp
       obsidian
-      krita
       logisim-evolution
       mpv
       kitty
       fuzzel
       kdePackages.dolphin
+      mangohud
 
       hyprpolkitagent
       hyprpaper
