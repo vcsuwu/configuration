@@ -22,6 +22,9 @@
       emmet-ls
       gopls
       rust-analyzer
+      tailwindcss-language-server
+      pyright
+      superhtml
     ];
     extraLuaPackages = lp: with lp; [luarocks jsregexp];
     withPython3 = true;
@@ -37,6 +40,8 @@
       friendly-snippets
       luasnip
       nvim-autopairs
+      indent-blankline-nvim
+      nvim-ts-autotag
     ];
     initLua = ''
       require("hollow")
@@ -47,7 +52,6 @@
     [
       tmux
       ncmpcpp
-      xray
       yazi
       discord
       zathura
@@ -69,6 +73,8 @@
       fuzzel
       kdePackages.dolphin
       mangohud
+      aseprite
+      gtk3
 
       hyprpolkitagent
       hyprpaper

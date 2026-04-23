@@ -16,12 +16,18 @@
   boot.kernelModules = ["tun"];
   security.sudo.wheelNeedsPassword = false;
   programs.nix-ld.enable = true;
+
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+    gamescopeSession.enable = true;
   };
+  programs.gamescope = {
+    enable = true;
+  };
+  programs.gamemode.enable = true;
 
   hardware.graphics = {
     enable = true;
@@ -31,7 +37,6 @@
   programs.wireshark.enable = true;
   programs.wireshark.dumpcap.enable = true;
   programs.wireshark.package = pkgs.wireshark;
-  programs.gamemode.enable = true;
 
   networking = {
     firewall = {
@@ -94,6 +99,7 @@
   environment.systemPackages = with pkgs; [
     neovim
     git
+    mangohud
   ];
 
   # This value determines the NixOS release from which the default
