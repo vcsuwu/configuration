@@ -1,6 +1,7 @@
 {
   pkgs,
   pkgs-stable,
+  pkgs-new,
   ...
 }: {
   imports = [
@@ -51,29 +52,16 @@
   home.packages = with pkgs;
     [
       tmux
-      ncmpcpp
       yazi
-      discord
-      zathura
 
-      blender
-      inkscape
       godot
-      telegram-desktop
-      flatpak
+      discord
       firefox
-      qtox
       keepassxc
       qbittorrent
-      gimp
-      obsidian
-      logisim-evolution
       mpv
       kitty
       fuzzel
-      kdePackages.dolphin
-      mangohud
-      aseprite
       gtk3
 
       hyprpolkitagent
@@ -85,7 +73,7 @@
       noto-fonts
       nerd-fonts.iosevka-term
     ]
-    ++ (with pkgs-stable; [rnote]);
+    ++ (with pkgs-stable; [rnote]) ++ (with pkgs-new; [obsidian]);
 
   home.username = "hollow";
   home.homeDirectory = "/home/hollow";

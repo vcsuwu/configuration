@@ -1,9 +1,5 @@
 {config, ...}: {
   xdg = {
-    userDirs = {
-      enable = true;
-      createDirectories = true;
-    };
     mimeApps = let
       mpv = ["mpv.desktop"];
       zathura = ["org.pwmt.zathura-pdf-mupdf.desktop"];

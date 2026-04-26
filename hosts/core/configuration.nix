@@ -7,8 +7,6 @@
     mod_dir = ../../modules/nixos;
   in [
     ./hardware-configuration.nix
-    (mod_dir + "/nextcloud.nix")
-    (mod_dir + "/zapret.nix")
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -16,18 +14,6 @@
   boot.kernelModules = ["tun"];
   security.sudo.wheelNeedsPassword = false;
   programs.nix-ld.enable = true;
-
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
-    gamescopeSession.enable = true;
-  };
-  programs.gamescope = {
-    enable = true;
-  };
-  programs.gamemode.enable = true;
 
   hardware.graphics = {
     enable = true;
@@ -45,7 +31,7 @@
     nftables.enable = true;
     hostName = "core";
     networkmanager.enable = true;
-    nameservers = ["1.1.1.1" "8.8.8.8"];
+    nameservers = ["8.8.8.8" "1.1.1.1"];
   };
 
   # Set your time zone.
@@ -99,7 +85,6 @@
   environment.systemPackages = with pkgs; [
     neovim
     git
-    mangohud
   ];
 
   # This value determines the NixOS release from which the default
