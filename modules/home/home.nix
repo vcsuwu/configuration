@@ -52,6 +52,8 @@
   home.packages = with pkgs;
     [
       tmux
+      eza
+      ripgrep
       yazi
 
       godot
