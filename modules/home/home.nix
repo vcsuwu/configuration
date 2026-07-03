@@ -45,7 +45,6 @@
       nvim-ts-autotag
     ];
     initLua = ''
-      require("hollow")
     '';
   };
 
@@ -57,7 +56,6 @@
       yazi
 
       godot
-      discord
       firefox
       keepassxc
       qbittorrent
@@ -65,6 +63,7 @@
       kitty
       fuzzel
       gtk3
+      vscode
 
       hyprpolkitagent
       hyprpaper

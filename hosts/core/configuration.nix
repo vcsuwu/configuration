@@ -61,6 +61,7 @@
       "wheel"
       "kvm"
       "wireshark"
+      "adbusers"
     ];
   };
 
